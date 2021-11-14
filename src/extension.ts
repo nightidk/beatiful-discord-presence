@@ -1,67 +1,69 @@
 import * as vscode from 'vscode';
-const client = require('discord-rich-presence-typescript')("665667955220021250");
-const statusBarIcon: vscode.StatusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left);
-statusBarIcon.text = '$(pulse) Connecting to Discord...';
-statusBarIcon.show();
 let name = "Отдыхаю";
 let time = Date.now();
+const { ClientRPC } = require('discord-rpc'); // eslint-disable-line
+import { CLIENT_ID, CONFIG_KEYS } from './constants';
+const statusBarIcon: vscode.StatusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left);
+let rpc = new ClientRPC({ transport: 'ipc' });
+
+async function prepare() {
+	statusBarIcon.text = '$(pulse) Подключение к Discord...';
+	statusBarIcon.show();
+}
+
+async function start() {
+	rpc.on("ready", () => {
+
+		statusBarIcon.text = '$(globe) Подключено к Discord';
+		statusBarIcon.tooltip = 'Подключено к Discord';
+
+
+	});
+
+	rpc.on('disconnected', async () => {
+
+		await rpc.destroy();
+		statusBarIcon.text = '$(pulse) Переподключение к Discord';
+		statusBarIcon.command = 'beatiful-discord-presence.reconnect';
+
+	});
+
+	try {
+		await rpc.login({ clientId: CLIENT_ID });
+	} catch (error) {
+		await rpc.destroy();
+		void vscode.window.showErrorMessage('Приложение Discord не найдено!');
+		statusBarIcon.text = '$(pulse) Переподключение к Discord';
+		statusBarIcon.command = 'beatiful-discord-presence.reconnect';
+	}
+}
 
 export function activate(context: vscode.ExtensionContext) {
+	prepare();
+
+	const disable = async () => {
+
+		void rpc?.destroy();
+		statusBarIcon.hide();
+
+	};
+
+	const enabler = vscode.commands.registerCommand('beatiful-discord-presence.enable', async () => {
+		await disable();
+		void start();
+	});
+	const reconnect = vscode.commands.registerCommand('beatiful-discord-presence.reconnect', async () => {
+		await disable();
+		void start();
+	});
 	
-	//console.log('Congratulations, your extension "discord-presence-night" is now active!');
-	const enabler = vscode.commands.registerCommand('discord.enable', async () => {
-		await vscode.window.showInformationMessage('Enabled Discord Presence for this workspace');
-	});
-	statusBarIcon.text = '$(globe) Connected to Discord';
-	statusBarIcon.tooltip = 'Connected to Discord';
-	let fileName = vscode.window.activeTextEditor?.document.fileName;
-	if (fileName !== undefined) {
-		let file = fileName.split('\\');
-		name = file[file.length - 1];
-		client.updatePresence({
-			state: "Версия: 2.2 [Release]",
-			details: `Работаю с ${name}`,
-			startTimestamp: time,
-			largeImageKey: "genshin-impact-logo",
-			smallImageKey: "genshin",
-			instance: true,
-		});
-	} else {
-		name = "Отдыхаю";
-		client.updatePresence({
-			state: "Версия: 2.2 [Release]",
-			details: `${name}`,
-			startTimestamp: time,
-			largeImageKey: "genshin-impact-logo",
-			smallImageKey: "genshin",
-			instance: true,
-		});
-	}
-
-	vscode.window.onDidChangeActiveTextEditor((textEditor) => {
-
-			if (textEditor !== undefined) {
-				let fileName = textEditor.document.fileName;
-				let file = fileName.split('\\');
-				name = file[file.length - 1];
-				
-				client.updatePresence({
-					state: "Версия: 2.2 [Release]",
-					details: `Работаю с ${name}`,
-					startTimestamp: time,
-					largeImageKey: "genshin-impact-logo",
-					smallImageKey: "genshin",
-					instance: true,
-				});
-			}
-
-	});
+	
 	context.subscriptions.push(enabler);
 }
 
 
 export function deactivate() {
-	statusBarIcon.text = '$(pulse) Disconnected from Discord';
-	statusBarIcon.tooltip = 'Disconnected from Discord';
-	client.disconnect();
+	statusBarIcon.text = '$(pulse) Отключено от Discord';
+	statusBarIcon.tooltip = 'Отключено от Discord';
+	rpc.destroy();
 }

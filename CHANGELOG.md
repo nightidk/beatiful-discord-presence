@@ -1,9 +1,6 @@
 # Change Log
 
-All notable changes to the "discord-presence-night" extension will be documented in this file.
+## [1.0.0a] - 2021-11-14
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
-
-## [Unreleased]
-
-- Initial release
+### Added
+- Ну раз, это первая загрузка на маркет, то по факту добавлено сейчас всё, что есть в модификации, а именно: полностью настраиваемый конфиг, чтобы Вам было удобно всё подстроить под себя!
