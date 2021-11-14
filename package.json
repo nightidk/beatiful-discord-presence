@@ -1,5 +1,8 @@
 {
 	"name": "discord-presence-night",
+	"author": {
+		"name": "night."
+	},
 	"displayName": "Discord Presence | night.",
 	"description": "Visual Studio Code plugin for Beatiful Discord Presence by night.",
 	"version": "0.0.1",
@@ -20,6 +23,13 @@
 				"title": "Connect/Disconnect Presence"
 			}
 		]
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/nightidk/discord-presence-night"
+	},
+	"bugs": {
+		"url": "https://github.com/nightidk/discord-presence-night/issues"
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
