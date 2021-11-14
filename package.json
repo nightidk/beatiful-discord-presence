@@ -13,6 +13,7 @@
 		"Other"
 	],
 	"activationEvents": [
+		"onCommand:discord-presence-night.enable",
 		"onStartupFinished"
 	],
 	"main": "./out/extension.js",
