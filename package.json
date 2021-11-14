@@ -21,7 +21,8 @@
 		"commands": [
 			{
 				"command": "discord-presence-night.enable",
-				"title": "Connect/Disconnect Presence"
+				"title": "Connect/Disconnect Presence",
+				"category": "Discord Presence night"
 			}
 		]
 	},

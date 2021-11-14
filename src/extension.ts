@@ -9,6 +9,9 @@ let time = Date.now();
 export function activate(context: vscode.ExtensionContext) {
 	
 	//console.log('Congratulations, your extension "discord-presence-night" is now active!');
+	const enabler = vscode.commands.registerCommand('discord.enable', async () => {
+		await vscode.window.showInformationMessage('Enabled Discord Presence for this workspace');
+	});
 	statusBarIcon.text = '$(globe) Connected to Discord';
 	statusBarIcon.tooltip = 'Connected to Discord';
 	let fileName = vscode.window.activeTextEditor?.document.fileName;
@@ -53,6 +56,7 @@ export function activate(context: vscode.ExtensionContext) {
 			}
 
 	});
+	context.subscriptions.push(enabler)
 }
 
 
