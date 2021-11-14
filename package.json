@@ -3,6 +3,7 @@
 	"author": {
 		"name": "night."
 	},
+	"publisher": "night.",
 	"displayName": "Discord Presence | night.",
 	"description": "Visual Studio Code plugin for Beatiful Discord Presence by night.",
 	"version": "0.0.1",
