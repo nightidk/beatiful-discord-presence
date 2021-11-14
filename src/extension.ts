@@ -56,7 +56,7 @@ export function activate(context: vscode.ExtensionContext) {
 			}
 
 	});
-	context.subscriptions.push(enabler)
+	context.subscriptions.push(enabler);
 }
 
 
