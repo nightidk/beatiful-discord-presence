@@ -25,6 +25,11 @@
 				"command": "beatiful-discord-presence.enable",
 				"title": "Enable Beatiful Discord Presence",
 				"category": "Beatiful Discord Presence"
+			},
+			{
+				"command": "beatiful-discord-presence.reconnect",
+				"title": "Reconnect Beatiful Discord Presence",
+				"category": "Beatiful Discord Presence"
 			}
 		]
 	},
