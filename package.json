@@ -7,7 +7,7 @@
 	"publisher": "nightdev",
 	"displayName": "Beatiful Discord Presence - BDP",
 	"description": "Beatiful Discord Presence или же BDP - созданная от нечего делать модификация для Vusial Studio Code, позволяющая полностью настроить для себя отображение актиности в профиле Discord.",
-	"version": "1.0.0a",
+	"version": "1.0.0",
 	"engines": {
 		"vscode": "^1.62.0"
 	},
