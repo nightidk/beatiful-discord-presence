@@ -81,6 +81,6 @@
 		"@vscode/test-electron": "^1.6.2"
 	},
 	"dependencies": {
-		"discord-rpc": "4.0.1"
+		"discord-rpc": "^4.0.1"
 	}
 }
