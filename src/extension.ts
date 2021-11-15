@@ -1,7 +1,5 @@
 import * as vscode from 'vscode';
 import { activity } from './activity';
-//const { throttle } = require("lodash.throttle");
-let name = "Отдыхаю";
 let time = Date.now();
 const { Client } = require('discord-rpc'); // eslint-disable-line
 import { CLIENT_ID, CONFIG_KEYS } from './constants';

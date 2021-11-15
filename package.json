@@ -37,6 +37,12 @@
 				"title": "Beatiful Discord Presence - BDP",
 				"type": "object",
 				"properties": {
+					"beatiful-discord-presence.id": {
+						"type": "string",
+						"default": "665667955220021250",
+						"description": "ID приложения",
+						"required": true
+					},
 					"beatiful-discord-presence.enabled": {
 						"type": "boolean",
 						"default": true,
@@ -78,7 +84,7 @@
 							"type": "string"
 						},
 						"default": [],
-						"description": "Добавить кнопки"
+						"description": "Добавить кнопки. Пример: Название кнопки | URL"
 					}
 				}
 			}
