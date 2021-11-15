@@ -24,16 +24,23 @@ export async function activity(states: APayload = {}) {
     const config = getConfig();
     const appName = env.appName;
     
-    let state: APayload = {
-        details: "test",
-        state: "test",
+    let stater: APayload = {
+        details: states.state ?? config.details ?? undefined,
+        state: states.state ?? config.state ?? undefined,
         startTimestamp: states.startTimestamp ?? Date.now(),
-        largeImageKey: "genshin-impact-logo",
-        largeImageText: "Paimon.exe",
-        smallImageKey: "genshin",
-        smallImageText: "vsc",
-        buttons: [{ label: "Discord", url: "https://discord.gg/C8GW7mEd" }]
+        largeImageKey: states.largeImageKey ?? config.largeImageKey ?? undefined,
+        largeImageText: states.largeImageText ?? config.largeImageText ?? undefined,
+        smallImageKey: states.smallImageKey ?? config.smallImageKey ?? undefined,
+        smallImageText: states.smallImageText ?? config.smallImageText ?? undefined,
+        buttons: undefined
     };
+    if (window.activeTextEditor) {
+        let fileName = window.activeTextEditor.document.fileName.split('\\');
+        stater = {
+            ...stater,
+            state: states.state === `Работаю с ${fileName[fileName.length - 1]}` ? states.state : `Работаю с ${fileName[fileName.length - 1]}` ?? undefined
+        };
+    }
 
-    return state;
+    return stater;
 }

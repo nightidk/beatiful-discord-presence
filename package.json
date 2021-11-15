@@ -31,26 +31,58 @@
 				"title": "Reconnect Beatiful Discord Presence",
 				"category": "Beatiful Discord Presence"
 			}
-		]
-	},
-	"configuration": {
-		"title": "Beatiful Discord Presence - BDP",
-		"type": "object",
-		"properties": {
-			"beatiful-discord-presence.enabled": {
-				"type": "boolean",
-				"default": true,
-				"description": "Контролирует работоспособность Beatiful Discord Presence"
-			},
-			"beatiful-discord-presence.buttons": {
-				"type": "array",
-				"items": {
-					"type": "string"
-				},
-				"default": [],
-				"description": "Добавить кнопки"
+		],
+		"configuration": [
+			{
+				"title": "Beatiful Discord Presence - BDP",
+				"type": "object",
+				"properties": {
+					"beatiful-discord-presence.enabled": {
+						"type": "boolean",
+						"default": true,
+						"description": "Контролирует работоспособность Beatiful Discord Presence"
+					},
+					"beatiful-discord-presence.details": {
+						"type": "string",
+						"default": "example config",
+						"description": "1 строчка Discord Presence"
+					},
+					"beatiful-discord-presence.state": {
+						"type": "string",
+						"default": "example config",
+						"description": "2 строчка Discord Presence"
+					},
+					"beatiful-discord-presence.largeImageKey": {
+						"type": "string",
+						"default": "example config",
+						"description": "Имя файла из Discord Developers - Большая картинка"
+					},
+					"beatiful-discord-presence.largeImageText": {
+						"type": "string",
+						"default": "example config",
+						"description": "Текст при наведении на большую картинку"
+					},
+					"beatiful-discord-presence.smallImageKey": {
+						"type": "string",
+						"default": "example config",
+						"description": "Имя файла из Discord Developers - Маленькая картинка"
+					},
+					"beatiful-discord-presence.smallImageText": {
+						"type": "string",
+						"default": "example config",
+						"description": "Текст при наведении на маленькую картинку"
+					},
+					"beatiful-discord-presence.buttons": {
+						"type": "array",
+						"items": {
+							"type": "string"
+						},
+						"default": [],
+						"description": "Добавить кнопки"
+					}
+				}
 			}
-		}
+		]
 	},
 	"repository": {
 		"type": "git",

@@ -5,10 +5,12 @@ let name = "Отдыхаю";
 let time = Date.now();
 const { Client } = require('discord-rpc'); // eslint-disable-line
 import { CLIENT_ID, CONFIG_KEYS } from './constants';
+import { getConfig } from './config';
 const statusBarIcon: vscode.StatusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left);
 let rpc = new Client({ transport: 'ipc' });
 let state = {};
 let listeners: { dispose(): any }[] = [];
+const config = getConfig();
 
 export function cleanUp() {
 	listeners.forEach((listener) => listener.dispose());
