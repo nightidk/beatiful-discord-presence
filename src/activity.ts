@@ -25,7 +25,7 @@ export async function activity(states: APayload = {}) {
     const appName = env.appName;
     
     let stater: APayload = {
-        details: states.state ?? config.details ?? undefined,
+        details: states.details ?? config.details ?? undefined,
         state: states.state ?? config.state ?? undefined,
         startTimestamp: states.startTimestamp ?? Date.now(),
         largeImageKey: states.largeImageKey ?? config.largeImageKey ?? undefined,
